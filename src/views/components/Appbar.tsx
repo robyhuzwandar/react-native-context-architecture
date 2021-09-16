@@ -1,20 +1,9 @@
 import React from 'react';
-import {
-  Image,
-  View,
-  StyleSheet,
-  Text,
-  NativeModules,
-  Platform,
-  StatusBar,
-} from 'react-native';
+import {Image, View, StyleSheet, Text, StatusBar} from 'react-native';
 import {theme} from '../../shared/styles/theme';
 import Icon from 'react-native-vector-icons/Ionicons';
-const {StatusBarManager} = NativeModules;
-const STATUSBAR_HEIGHT =
-  Platform.OS === 'ios'
-    ? StatusBarManager.getStatusBarHeight
-    : StatusBar.currentHeight;
+
+const STATUSBAR_HEIGHT = StatusBar.currentHeight || 70;
 
 type AppBarProps = {
   title?: string;
@@ -35,7 +24,7 @@ const AppBar: React.FC<AppBarProps> = ({title}) => {
 
         <Text style={[S.title, theme.textVariants.bodyBold.bb1]}>{title}</Text>
         <View style={S.rightHeader}>
-          <Icon name={'notifications-outline'} size={theme.spacing.m} />
+          <Icon name={'notifications-outline'} size={theme.spacing.l} />
         </View>
       </View>
     </View>

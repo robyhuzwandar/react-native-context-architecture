@@ -2,7 +2,7 @@ import {Dimensions, StyleProp, TextStyle} from 'react-native';
 
 export const theme: Theme = {
   colors: {
-    yellow: '#FFF933',
+    yellow: '#FAE00D',
     green: '#0ECD9D',
     red: '#CD0E61',
     black: '#0B0B0B',

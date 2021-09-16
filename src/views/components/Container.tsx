@@ -1,16 +1,13 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, StyleProp, ViewStyle} from 'react-native';
 
 type ContainerProps = {
   hideAppBar?: boolean;
+  style?: StyleProp<ViewStyle>;
 };
 
-const Container: React.FC<ContainerProps> = ({children}) => {
-  return (
-    <View>
-      <View style={S.container}>{children}</View>
-    </View>
-  );
+const Container: React.FC<ContainerProps> = ({children, style}) => {
+  return <View style={[S.container, style]}>{children}</View>;
 };
 
 const S = StyleSheet.create({
