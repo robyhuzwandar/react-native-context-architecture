@@ -1,4 +1,5 @@
-import {Dimensions, StyleProp, TextStyle} from 'react-native';
+import {Dimensions} from 'react-native';
+import {Theme} from './types';
 
 export const theme: Theme = {
   colors: {
@@ -6,9 +7,9 @@ export const theme: Theme = {
     green: '#0ECD9D',
     red: '#CD0E61',
     black: '#0B0B0B',
-    white: '#F0F2F3',
-    silver: '#C2C2C2',
-    grey: '#ADADAD',
+    white: 'white',
+    silver: '#e8e8e8',
+    grey: 'gray',
   },
   spacing: {
     xxxs: 2,
@@ -16,10 +17,10 @@ export const theme: Theme = {
     xs: 8,
     s: 12,
     m: 16,
-    l: 24,
-    xl: 32,
-    xxl: 40,
-    xxxl: 48,
+    l: 20,
+    xl: 24,
+    xxl: 28,
+    xxxl: 32,
     widthScreen: Dimensions.get('window').width,
     heightScreen: Dimensions.get('window').height,
   },
@@ -72,59 +73,4 @@ export const theme: Theme = {
       },
     },
   },
-};
-
-type Colors = {
-  yellow: string;
-  green: string;
-  red: string;
-  black: string;
-  white: string;
-  silver: string;
-  grey: string;
-};
-
-type TextVariant = {
-  header: TextHeader;
-  body: TextBody;
-  bodyBold: TextBodyBold;
-};
-
-type TextHeader = {
-  h1: StyleProp<TextStyle>;
-  h2: StyleProp<TextStyle>;
-  h3: StyleProp<TextStyle>;
-  h4: StyleProp<TextStyle>;
-};
-
-type TextBody = {
-  b1: StyleProp<TextStyle>;
-  b2: StyleProp<TextStyle>;
-  b3: StyleProp<TextStyle>;
-};
-
-type TextBodyBold = {
-  bb1: StyleProp<TextStyle>;
-  bb2: StyleProp<TextStyle>;
-  bb3: StyleProp<TextStyle>;
-};
-
-type Spacing = {
-  xxxs: number;
-  xxs: number;
-  xs: number;
-  s: number;
-  m: number;
-  l: number;
-  xl: number;
-  xxl: number;
-  xxxl: number;
-  widthScreen: number;
-  heightScreen: number;
-};
-
-type Theme = {
-  colors: Colors;
-  spacing: Spacing;
-  textVariants: TextVariant;
 };
