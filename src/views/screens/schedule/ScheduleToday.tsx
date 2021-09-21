@@ -6,7 +6,7 @@ import Row from '../../components/Row';
 import {cardPrimaryStyle} from '../../../shared/styles/styles';
 import Column from '../../components/Column';
 import DashedLine from '../../components/DashLine';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Time from './elements/Time';
 
 type ScheduleTodayProps = {};
 
@@ -21,12 +21,7 @@ const ScheduleToday: React.FC<ScheduleTodayProps> = () => {
         <Text style={[theme.textVariants.bodyBold.bb2, S.title]}>
           Mediterania Garden Reseidence
         </Text>
-        <Row>
-          <Icon name={'clock-time-four-outline'} size={theme.spacing.l} />
-          <Text style={[S.time, theme.textVariants.body.b2]}>
-            08:00 - 17:00
-          </Text>
-        </Row>
+        <Time />
         <Row style={S.row}>
           <Column style={S.column}>
             <View style={[cardPrimaryStyle.containerSuccess, S.clockLabelView]}>
@@ -96,9 +91,6 @@ const S = StyleSheet.create({
     backgroundColor: theme.colors.silver,
     padding: theme.spacing.m,
     borderRadius: theme.spacing.s,
-  },
-  time: {
-    marginLeft: theme.spacing.xs,
   },
 });
 export default ScheduleToday;

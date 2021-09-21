@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, View, StyleProp, ViewStyle} from 'react-native';
+import {StyleSheet, StyleProp, ViewStyle} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 
 type ContainerProps = {
   hideAppBar?: boolean;
@@ -7,7 +8,7 @@ type ContainerProps = {
 };
 
 const Container: React.FC<ContainerProps> = ({children, style}) => {
-  return <View style={[S.container, style]}>{children}</View>;
+  return <ScrollView style={[S.container, style]}>{children}</ScrollView>;
 };
 
 const S = StyleSheet.create({
