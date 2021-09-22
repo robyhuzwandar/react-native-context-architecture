@@ -68,11 +68,13 @@ const Store = () => (
     </Column>
   </Row>
 );
+
 const TimeSchedule = () => (
   <View style={[containerPrimaryStyle.containerPrimary, S.card]}>
     <Time />
   </View>
 );
+
 const ClockIn = () => (
   <View style={[containerPrimaryStyle.containerPrimary, S.card]}>
     <Row>
@@ -81,6 +83,7 @@ const ClockIn = () => (
     </Row>
   </View>
 );
+
 const ClockOut = () => (
   <View style={[containerPrimaryStyle.containerPrimary, S.card]}>
     <Row>
