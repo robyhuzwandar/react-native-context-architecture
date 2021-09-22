@@ -3,6 +3,7 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {DefaultNavigationProps} from '../../../route/type';
 import AllScheduleItemItem from './elements/AllScheduleItem';
 import {theme} from '../../../shared/styles/theme';
+import ButtonIcon from '../../components/button/ButtonIcon';
 
 type AllScheduleProps = {
   navigation: DefaultNavigationProps<'default'>;
@@ -10,8 +11,14 @@ type AllScheduleProps = {
 
 const AllSchedule: React.FC<AllScheduleProps> = ({navigation}) => {
   React.useLayoutEffect(() => {
-    navigation.setOptions({});
+    navigation.setOptions({
+      title: 'UPCOMING SCHEDULE',
+      headerRight: () => (
+        <ButtonIcon onPress={() => {}} iconName={'refresh-cw'} />
+      ),
+    });
   }, [navigation]);
+
   return (
     <View style={S.container}>
       <Text style={[theme.textVariants.header.h4, S.month]}>SEP 2021</Text>
@@ -21,6 +28,7 @@ const AllSchedule: React.FC<AllScheduleProps> = ({navigation}) => {
           <AllScheduleItemItem
             isScheduleEmpty={item === 2 || item === 6}
             isToday={item === 1}
+            navigation={navigation}
           />
         )}
       />

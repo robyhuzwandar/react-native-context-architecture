@@ -1,30 +1,43 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {containerPrimaryStyle} from '../../../../shared/styles/styles';
 import Column from '../../../components/Column';
 import Row from '../../../components/Row';
 import Time from './Time';
 import {theme} from '../../../../shared/styles/theme';
 import DashContainer from '../../../components/DashContainer';
+import {DefaultNavigationProps} from '../../../../route/type';
 
-type AllScheduleItemItemProps = {isScheduleEmpty: Boolean; isToday: Boolean};
+type AllScheduleItemItemProps = {
+  isScheduleEmpty: Boolean;
+  isToday: Boolean;
+  navigation: DefaultNavigationProps<'default'>;
+};
 type CardContentProps = {isToday: Boolean};
 
 const AllScheduleItemItem: React.FC<AllScheduleItemItemProps> = ({
   isScheduleEmpty,
   isToday,
+  navigation,
 }) => {
   return (
-    <Row style={S.container}>
-      <MonthDate />
-      {isScheduleEmpty ? (
-        <DashContainer style={S.dashContainer}>
-          <Text style={theme.textVariants.bodyBold.bb2}>NO SCHEDULE</Text>
-        </DashContainer>
-      ) : (
-        <CardContent isToday={isToday} />
-      )}
-    </Row>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('ScheduleDetails', {
+          title: '7 APRIL 2021',
+        })
+      }>
+      <Row style={S.container}>
+        <MonthDate />
+        {isScheduleEmpty ? (
+          <DashContainer style={S.dashContainer}>
+            <Text style={theme.textVariants.bodyBold.bb2}>NO SCHEDULE</Text>
+          </DashContainer>
+        ) : (
+          <CardContent isToday={isToday} />
+        )}
+      </Row>
+    </TouchableOpacity>
   );
 };
 
