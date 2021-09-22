@@ -4,6 +4,7 @@ import {theme} from './theme';
 const containerPrimaryStyle = StyleSheet.create({
   containerPrimary: {
     borderRadius: theme.spacing.xxs,
+    backgroundColor: theme.colors.silver,
   },
   containerError: {
     borderRadius: theme.spacing.xxs,
@@ -15,4 +16,4 @@ const containerPrimaryStyle = StyleSheet.create({
   },
 });
 
-export {containerPrimaryStyle as cardPrimaryStyle};
+export {containerPrimaryStyle};

@@ -1,10 +1,11 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import Container from '../../components/Container';
 import {theme} from '../../../shared/styles/theme';
 import Row from '../../components/Row';
 import Time from './elements/Time';
 import {DefaultNavigationProps} from '../../../route/type';
+import ButtonText from '../../components/button/ButtonText';
 
 type NextScheduleProps = {
   navigation: DefaultNavigationProps<'default'>;
@@ -15,9 +16,11 @@ const NextSchedule: React.FC<NextScheduleProps> = ({navigation}) => {
     <Container>
       <Row style={S.labelContainer}>
         <Text style={theme.textVariants.header.h4}>NEXT SCHEDULE</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('AllSchedule')}>
-          <Text style={[theme.textVariants.body.b1, S.label]}>See all</Text>
-        </TouchableOpacity>
+        <ButtonText
+          onPress={() => navigation.navigate('AllSchedule')}
+          label={'See all'}
+          labelStyle={S.label}
+        />
       </Row>
       <FlatList
         data={[1, 2, 3, 4, 5]}

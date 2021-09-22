@@ -1,14 +1,40 @@
 import React from 'react';
-import {Text} from 'react-native';
-import Container from '../../components/Container';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {DefaultNavigationProps} from '../../../route/type';
+import AllScheduleItemItem from './elements/AllScheduleItem';
+import {theme} from '../../../shared/styles/theme';
 
-type AllScheduleProps = {};
+type AllScheduleProps = {
+  navigation: DefaultNavigationProps<'default'>;
+};
 
-const AllSchedule: React.FC<AllScheduleProps> = () => {
+const AllSchedule: React.FC<AllScheduleProps> = ({navigation}) => {
+  React.useLayoutEffect(() => {
+    navigation.setOptions({});
+  }, [navigation]);
   return (
-    <Container>
-      <Text>ALL SCHEDULE SCREEN</Text>
-    </Container>
+    <View style={S.container}>
+      <Text style={[theme.textVariants.header.h4, S.month]}>SEP 2021</Text>
+      <FlatList
+        data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+        renderItem={({item}: any) => (
+          <AllScheduleItemItem
+            isScheduleEmpty={item === 2 || item === 6}
+            isToday={item === 1}
+          />
+        )}
+      />
+    </View>
   );
 };
+
+const S = StyleSheet.create({
+  container: {
+    margin: theme.spacing.m,
+    paddingBottom: theme.spacing.xxxl,
+  },
+  month: {
+    marginBottom: theme.spacing.m,
+  },
+});
 export default AllSchedule;

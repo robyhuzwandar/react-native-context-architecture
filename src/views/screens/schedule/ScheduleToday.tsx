@@ -3,10 +3,10 @@ import {StyleSheet, Text, View} from 'react-native';
 import Container from '../../components/Container';
 import {theme} from '../../../shared/styles/theme';
 import Row from '../../components/Row';
-import {cardPrimaryStyle} from '../../../shared/styles/styles';
 import Column from '../../components/Column';
 import DashedLine from '../../components/DashLine';
 import Time from './elements/Time';
+import {containerPrimaryStyle} from '../../../shared/styles/styles';
 
 type ScheduleTodayProps = {};
 
@@ -24,7 +24,11 @@ const ScheduleToday: React.FC<ScheduleTodayProps> = () => {
         <Time />
         <Row style={S.row}>
           <Column style={S.column}>
-            <View style={[cardPrimaryStyle.containerSuccess, S.clockLabelView]}>
+            <View
+              style={[
+                containerPrimaryStyle.containerSuccess,
+                S.clockLabelView,
+              ]}>
               <Text style={[theme.textVariants.bodyBold.bb3, S.clockLabel]}>
                 CLOCK IN
               </Text>
@@ -40,7 +44,8 @@ const ScheduleToday: React.FC<ScheduleTodayProps> = () => {
             />
           </View>
           <Column style={S.column}>
-            <View style={[cardPrimaryStyle.containerError, S.clockLabelView]}>
+            <View
+              style={[containerPrimaryStyle.containerError, S.clockLabelView]}>
               <Text style={[theme.textVariants.bodyBold.bb3, S.clockLabel]}>
                 CLOCK IN
               </Text>
