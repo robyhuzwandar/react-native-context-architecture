@@ -26,7 +26,7 @@ const ScheduleDetails: React.FC<ScheduleDetailsProps> = ({
 }) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      title: route.params?.title,
+      title: route.params?.title ?? '',
     });
   }, [navigation, route]);
 
