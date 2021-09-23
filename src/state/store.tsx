@@ -1,6 +1,9 @@
 import React from 'react';
 import {createContext, useReducer} from 'react';
-import {scheduleReducer, scheduleState} from './reducers/schedule.reducer';
+import {
+  scheduleTodayReducer,
+  scheduleTodayState,
+} from './reducers/scheduleToday.reducer';
 
 export type ContextReducers = {
   schedule: any[];
@@ -8,9 +11,8 @@ export type ContextReducers = {
 
 const Store = ({children}: any) => {
   const rootReducer: ContextReducers = {
-    schedule: useReducer(scheduleReducer, scheduleState),
+    schedule: useReducer(scheduleTodayReducer, scheduleTodayState),
   };
-  // eslint-disable-next-line react/react-in-jsx-scope
   return <Context.Provider value={rootReducer}>{children}</Context.Provider>;
 };
 

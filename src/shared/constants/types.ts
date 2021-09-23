@@ -1,5 +1,5 @@
 export type StateReducer = {
-  data: any[] | null | undefined;
+  data: any[] | null | undefined | any;
   message: any;
   isError: boolean;
   isLoading: boolean;

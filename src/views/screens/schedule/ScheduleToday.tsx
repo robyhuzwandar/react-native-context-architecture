@@ -7,10 +7,30 @@ import Column from '../../components/Column';
 import DashedLine from '../../components/DashLine';
 import Time from './elements/Time';
 import {containerPrimaryStyle} from '../../../shared/styles/styles';
+import useSchedule from '../../../hooks/useSchedule';
+import {ScheduleTodayModel} from '../../../data/models/schedule.model';
 
 type ScheduleTodayProps = {};
 
 const ScheduleToday: React.FC<ScheduleTodayProps> = () => {
+  const {isLoading, isError, data} = useSchedule();
+
+  if (isLoading) {
+    return <Text>Loading....</Text>;
+  } else if (isError) {
+    return <Text>Error</Text>;
+  } else if (data) {
+    return <ScheduleTodayBody data={data} />;
+  } else {
+    return <Text>Empty</Text>;
+  }
+};
+
+type ScheduleTodayBodyProps = {
+  data: ScheduleTodayModel;
+};
+
+const ScheduleTodayBody: React.FC<ScheduleTodayBodyProps> = ({data}) => {
   return (
     <Container style={S.container}>
       <Row style={S.titleContainer}>
@@ -19,9 +39,9 @@ const ScheduleToday: React.FC<ScheduleTodayProps> = () => {
       </Row>
       <View style={S.card}>
         <Text style={[theme.textVariants.bodyBold.bb2, S.title]}>
-          Mediterania Garden Reseidence
+          {data.location}
         </Text>
-        <Time />
+        <Time start={data.timeStart} end={data.timeEnd} />
         <Row style={S.row}>
           <Column style={S.column}>
             <View

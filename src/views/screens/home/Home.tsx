@@ -8,6 +8,7 @@ import NextSchedule from '../schedule/NextSchedule';
 import Row from '../../components/Row';
 import ButtonPrimary from '../../components/button/ButtonPrimary';
 import {DefaultNavigationProps} from '../../../route/type';
+import {dateFormat, timeFormat} from '../../../shared/utils/date';
 
 type HomeProps = {
   navigation: DefaultNavigationProps<'default'>;
@@ -18,8 +19,12 @@ const Home: React.FC<HomeProps> = ({navigation}) => {
     <Container>
       <AppBar title={'LIVE ATTENDENCE'} />
       <View style={S.header}>
-        <Text style={[theme.textVariants.header.h1, S.time]}>07:30</Text>
-        <Text style={theme.textVariants.bodyBold.bb2}>Monday, 5 Apr 2021</Text>
+        <Text style={[theme.textVariants.header.h1, S.time]}>
+          {timeFormat(new Date())}
+        </Text>
+        <Text style={theme.textVariants.bodyBold.bb2}>
+          {dateFormat(new Date())}
+        </Text>
       </View>
       <ScheduleToday />
       <NextSchedule navigation={navigation} />

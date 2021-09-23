@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 /**
  * @param {int} The month number, 0 based
  * @param {int} The year, not zero based, required to account for leap years
@@ -11,4 +13,12 @@ export function getDaysInMonth(month: any, year: any): Date[] {
     date.setDate(date.getDate() + 1);
   }
   return days;
+}
+
+export function timeFormat(value: Date): string {
+  return moment(value).format('hh:mm');
+}
+
+export function dateFormat(value: Date): string {
+  return moment(value).format('dddd, D MMM YYYY');
 }
