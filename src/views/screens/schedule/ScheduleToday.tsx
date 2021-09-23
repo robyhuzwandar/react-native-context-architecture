@@ -7,30 +7,29 @@ import Column from '../../components/Column';
 import DashedLine from '../../components/DashLine';
 import Time from './elements/Time';
 import {containerPrimaryStyle} from '../../../shared/styles/styles';
-import useSchedule from '../../../hooks/useSchedule';
-import {ScheduleTodayModel} from '../../../data/models/schedule.model';
+import useScheduleToday from '../../../hooks/useScheduleToday';
+import {ScheduleModel} from '../../../data/models/schedule.model';
 
 type ScheduleTodayProps = {};
+type ScheduleTodayBodyProps = {
+  data: ScheduleModel;
+};
 
 const ScheduleToday: React.FC<ScheduleTodayProps> = () => {
-  const {isLoading, isError, data} = useSchedule();
+  const {isLoading, isError, data} = useScheduleToday();
 
   if (isLoading) {
     return <Text>Loading....</Text>;
   } else if (isError) {
     return <Text>Error</Text>;
   } else if (data) {
-    return <ScheduleTodayBody data={data} />;
+    return <ScheduleTodayContent data={data} />;
   } else {
     return <Text>Empty</Text>;
   }
 };
 
-type ScheduleTodayBodyProps = {
-  data: ScheduleTodayModel;
-};
-
-const ScheduleTodayBody: React.FC<ScheduleTodayBodyProps> = ({data}) => {
+const ScheduleTodayContent: React.FC<ScheduleTodayBodyProps> = ({data}) => {
   return (
     <Container style={S.container}>
       <Row style={S.titleContainer}>

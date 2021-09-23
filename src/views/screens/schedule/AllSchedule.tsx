@@ -1,9 +1,12 @@
 import React from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {DefaultNavigationProps} from '../../../route/type';
-import AllScheduleItemItem from './elements/AllScheduleItem';
+import AllScheduleItem from './elements/AllScheduleItem';
 import {theme} from '../../../shared/styles/theme';
 import ButtonIcon from '../../components/button/ButtonIcon';
+import useAllSchedule, {
+  UseAllScheduleParams,
+} from '../../../hooks/useAllSchedule';
 
 type AllScheduleProps = {
   navigation: DefaultNavigationProps<'default'>;
@@ -19,21 +22,37 @@ const AllSchedule: React.FC<AllScheduleProps> = ({navigation}) => {
     });
   }, [navigation]);
 
-  return (
-    <View style={S.container}>
-      <Text style={[theme.textVariants.header.h4, S.month]}>SEP 2021</Text>
-      <FlatList
-        data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-        renderItem={({item}: any) => (
-          <AllScheduleItemItem
-            isScheduleEmpty={item === 2 || item === 6}
-            isToday={item === 1}
-            navigation={navigation}
-          />
-        )}
-      />
-    </View>
-  );
+  const {isLoading, isError, scheduleThisMonth}: UseAllScheduleParams =
+    useAllSchedule();
+
+  if (isLoading) {
+    return <Text>Loading....</Text>;
+  } else if (isError) {
+    return <Text>Error</Text>;
+  } else if (scheduleThisMonth) {
+    return (
+      <View style={S.container}>
+        <Text style={[theme.textVariants.header.h4, S.month]}>SEP 2021</Text>
+        <FlatList
+          data={scheduleThisMonth}
+          renderItem={({item}: any) => {
+            let isScheduleEmpty: Boolean = item?.schedule === undefined;
+            let isToday: Boolean = +item.date === new Date().getDate();
+            return (
+              <AllScheduleItem
+                isScheduleEmpty={isScheduleEmpty}
+                isToday={isToday}
+                navigation={navigation}
+                scheduleOfMonth={item}
+              />
+            );
+          }}
+        />
+      </View>
+    );
+  } else {
+    return <Text>Empty</Text>;
+  }
 };
 
 const S = StyleSheet.create({

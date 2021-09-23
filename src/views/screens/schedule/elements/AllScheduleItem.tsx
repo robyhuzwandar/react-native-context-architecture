@@ -7,54 +7,70 @@ import Time from './Time';
 import {theme} from '../../../../shared/styles/theme';
 import DashContainer from '../../../components/DashContainer';
 import {DefaultNavigationProps} from '../../../../route/type';
+import {ScheduleOfMonthModel} from '../../../../data/models/scheduleOfMonth.model';
 
-type AllScheduleItemItemProps = {
+type AllScheduleItemProps = {
   isScheduleEmpty: Boolean;
   isToday: Boolean;
   navigation: DefaultNavigationProps<'default'>;
+  scheduleOfMonth: ScheduleOfMonthModel;
 };
-type CardContentProps = {isToday: Boolean};
 
-const AllScheduleItemItem: React.FC<AllScheduleItemItemProps> = ({
+type MonthDate = {
+  scheduleOfMonth: ScheduleOfMonthModel;
+};
+type CardContentProps = {
+  isToday: Boolean;
+  scheduleOfMonth: ScheduleOfMonthModel;
+};
+
+const AllScheduleItem: React.FC<AllScheduleItemProps> = ({
   isScheduleEmpty,
   isToday,
   navigation,
+  scheduleOfMonth,
 }) => {
   return (
     <TouchableOpacity
-      onPress={() =>
-        navigation.navigate('ScheduleDetails', {
-          title: '7 APRIL 2021',
-        })
-      }>
+      onPress={() => {
+        if (!isScheduleEmpty) {
+          navigation.navigate('ScheduleDetails', {
+            title: scheduleOfMonth.schedule!.timeStart,
+            schedule: scheduleOfMonth.schedule!,
+          });
+        }
+      }}>
       <Row style={S.container}>
-        <MonthDate />
+        <MonthDate scheduleOfMonth={scheduleOfMonth} />
         {isScheduleEmpty ? (
           <DashContainer style={S.dashContainer}>
             <Text style={theme.textVariants.bodyBold.bb2}>NO SCHEDULE</Text>
           </DashContainer>
         ) : (
-          <CardContent isToday={isToday} />
+          <CardContent isToday={isToday} scheduleOfMonth={scheduleOfMonth} />
         )}
       </Row>
     </TouchableOpacity>
   );
 };
 
-const MonthDate = () => (
+const MonthDate = ({scheduleOfMonth}: MonthDate) => (
   <Column style={S.monthAndDate}>
-    <Text style={S.month}>MON</Text>
-    <Text style={theme.textVariants.header.h3}>5</Text>
+    <Text style={S.month}>{scheduleOfMonth.month}</Text>
+    <Text style={theme.textVariants.header.h3}>{scheduleOfMonth.date}</Text>
   </Column>
 );
 
-const CardContent = ({isToday}: CardContentProps) => (
+const CardContent = ({isToday, scheduleOfMonth}: CardContentProps) => (
   <View style={[containerPrimaryStyle.containerPrimary, S.card]}>
     <Text style={[theme.textVariants.bodyBold.bb2, S.title]}>
-      Meditaria Garden Residence
+      {scheduleOfMonth.schedule?.location}
     </Text>
     <Row>
-      <Time />
+      <Time
+        start={scheduleOfMonth.schedule!.timeStart}
+        end={scheduleOfMonth.schedule!.timeEnd}
+      />
       {isToday && (
         <View style={[containerPrimaryStyle.containerError, S.todayContainer]}>
           <Text style={[theme.textVariants.bodyBold.bb3, S.todayLabel]}>
@@ -100,4 +116,4 @@ const S = StyleSheet.create({
     color: theme.colors.white,
   },
 });
-export default AllScheduleItemItem;
+export default AllScheduleItem;

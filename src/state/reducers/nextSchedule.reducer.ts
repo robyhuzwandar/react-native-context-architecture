@@ -1,31 +1,31 @@
 import {Action, StateReducer} from '../../shared/constants/types';
 import {
-  SCHEDULE_TODAY_FETCHING,
-  SCHEDULE_TODAY_LOADED,
-  SCHEDULE_TODAY_FAILURE,
+  NEXT_SCHEDULE_FETCHING,
+  NEXT_SCHEDULE_LOADED,
+  NEXT_SCHEDULE_FAILURE,
 } from '../actions/schedule.action';
 
-const scheduleTodayState: StateReducer = {
+const nextScheduleState: StateReducer = {
   data: '',
   isError: false,
   isLoading: false,
   message: '',
 };
 
-const scheduleTodayReducer = (state: StateReducer, action: Action) => {
+const nextScheduleReducer = (state: StateReducer, action: Action) => {
   switch (action.type) {
-    case SCHEDULE_TODAY_FETCHING:
+    case NEXT_SCHEDULE_FETCHING:
       return {
         ...state,
         isLoading: true,
       };
-    case SCHEDULE_TODAY_LOADED:
+    case NEXT_SCHEDULE_LOADED:
       return {
         ...state,
         data: action.payload,
         isLoading: false,
       };
-    case SCHEDULE_TODAY_FAILURE:
+    case NEXT_SCHEDULE_FAILURE:
       return {
         ...state,
         isError: true,
@@ -37,4 +37,4 @@ const scheduleTodayReducer = (state: StateReducer, action: Action) => {
   }
 };
 
-export {scheduleTodayReducer, scheduleTodayState};
+export {nextScheduleReducer, nextScheduleState};

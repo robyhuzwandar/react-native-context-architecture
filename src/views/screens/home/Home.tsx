@@ -8,7 +8,7 @@ import NextSchedule from '../schedule/NextSchedule';
 import Row from '../../components/Row';
 import ButtonPrimary from '../../components/button/ButtonPrimary';
 import {DefaultNavigationProps} from '../../../route/type';
-import {dateFormat, timeFormat} from '../../../shared/utils/date';
+import {dateWithDayFormat, timeFormat} from '../../../shared/utils/date';
 
 type HomeProps = {
   navigation: DefaultNavigationProps<'default'>;
@@ -23,7 +23,7 @@ const Home: React.FC<HomeProps> = ({navigation}) => {
           {timeFormat(new Date())}
         </Text>
         <Text style={theme.textVariants.bodyBold.bb2}>
-          {dateFormat(new Date())}
+          {dateWithDayFormat(new Date())}
         </Text>
       </View>
       <ScheduleToday />

@@ -6,12 +6,41 @@ import Row from '../../components/Row';
 import Time from './elements/Time';
 import {DefaultNavigationProps} from '../../../route/type';
 import ButtonText from '../../components/button/ButtonText';
+import useNextSchedule, {
+  UseNextScheduleParams,
+} from '../../../hooks/useNextSchedule';
+import {ScheduleModel} from '../../../data/models/schedule.model';
+import {getDateAndMont, getDay} from '../../../shared/utils/date';
 
 type NextScheduleProps = {
   navigation: DefaultNavigationProps<'default'>;
 };
+type NextScheduleContentProps = {
+  schedules: ScheduleModel[];
+  navigation: DefaultNavigationProps<'default'>;
+};
+type CardScheduleProps = {
+  schedule: ScheduleModel;
+};
 
 const NextSchedule: React.FC<NextScheduleProps> = ({navigation}) => {
+  const {isLoading, isError, data}: UseNextScheduleParams = useNextSchedule();
+
+  if (isLoading) {
+    return <Text>Loading....</Text>;
+  } else if (isError) {
+    return <Text>Error</Text>;
+  } else if (data) {
+    return <NextScheduleContent schedules={data} navigation={navigation} />;
+  } else {
+    return <Text>Empty</Text>;
+  }
+};
+
+const NextScheduleContent: React.FC<NextScheduleContentProps> = ({
+  schedules,
+  navigation,
+}) => {
   return (
     <Container>
       <Row style={S.labelContainer}>
@@ -23,10 +52,10 @@ const NextSchedule: React.FC<NextScheduleProps> = ({navigation}) => {
         />
       </Row>
       <FlatList
-        data={[1, 2, 3, 4, 5]}
-        renderItem={({_, index}: any) => (
+        data={schedules.slice(0, 5)}
+        renderItem={({item, index}: any) => (
           <View style={index === 0 ? {...S.firstCard} : {}}>
-            <CardItem />
+            <CardSchedule schedule={item} />
           </View>
         )}
         horizontal={true}
@@ -35,17 +64,19 @@ const NextSchedule: React.FC<NextScheduleProps> = ({navigation}) => {
   );
 };
 
-type CardItemProps = {};
-
-const CardItem: React.FC<CardItemProps> = () => {
+const CardSchedule: React.FC<CardScheduleProps> = ({schedule}) => {
   return (
     <View style={S.card}>
-      <Text style={[theme.textVariants.body.b3, S.day]}>WEDNESDAY</Text>
-      <Text style={[theme.textVariants.header.h2, S.dateMonth]}>7 Apr</Text>
-      <Text style={[theme.textVariants.bodyBold.bb2, S.location]}>
-        Mediterania Garden Reseidence
+      <Text style={[theme.textVariants.body.b3, S.day]}>
+        {getDay(schedule.timeStart)}
       </Text>
-      <Time />
+      <Text style={[theme.textVariants.header.h2, S.dateMonth]}>
+        {getDateAndMont(schedule.timeStart)}
+      </Text>
+      <Text style={[theme.textVariants.bodyBold.bb2, S.location]}>
+        {schedule.location}
+      </Text>
+      <Time start={schedule.timeStart} end={schedule.timeEnd} />
     </View>
   );
 };
