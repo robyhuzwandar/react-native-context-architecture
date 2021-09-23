@@ -1,12 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Container from '../../components/Container';
+import Container from '../../elements/Container';
 import {theme} from '../../../shared/styles/theme';
-import AppBar from '../../components/Appbar';
+import AppBar from '../../elements/Appbar';
 import ScheduleToday from '../schedule/ScheduleToday';
 import NextSchedule from '../schedule/NextSchedule';
-import Row from '../../components/Row';
-import ButtonPrimary from '../../components/button/ButtonPrimary';
+import Row from '../../elements/Row';
+import ButtonPrimary from '../../elements/button/ButtonPrimary';
 import {DefaultNavigationProps} from '../../../route/type';
 import {dateWithDayFormat, timeFormat} from '../../../shared/utils/date';
 
@@ -26,7 +26,7 @@ const Home: React.FC<HomeProps> = ({navigation}) => {
           {dateWithDayFormat(new Date())}
         </Text>
       </View>
-      <ScheduleToday />
+      <ScheduleToday navigation={navigation} />
       <NextSchedule navigation={navigation} />
       <Row style={S.buttonRow}>
         <ButtonPrimary

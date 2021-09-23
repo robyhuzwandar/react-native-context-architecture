@@ -6,7 +6,7 @@ import AllSchedule from '../views/screens/schedule/AllSchedule';
 import Splash from '../views/screens/common/Splash';
 import {StackParamList} from './type';
 import {theme} from '../shared/styles/theme';
-import ButtonIcon from '../views/components/button/ButtonIcon';
+import ButtonIcon from '../views/elements/button/ButtonIcon';
 import ScheduleDetails from '../views/screens/schedule/ScheduleDetails';
 
 const AppStack = createNativeStackNavigator<StackParamList>();

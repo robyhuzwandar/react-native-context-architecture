@@ -5,16 +5,15 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {DefaultNavigationProps, ParamList} from '../../../route/type';
 import {containerPrimaryStyle} from '../../../shared/styles/styles';
 import {theme} from '../../../shared/styles/theme';
-import Column from '../../components/Column';
-import Container from '../../components/Container';
-import OpenMap from '../../components/OpenMap';
-import Row from '../../components/Row';
-import Time from './elements/Time';
+import Column from '../../elements/Column';
+import Container from '../../elements/Container';
+import OpenMap from '../../elements/OpenMap';
+import Row from '../../elements/Row';
+import Time from './components/Time';
 import {dateFormat} from '../../../shared/utils/date';
 import {ScheduleModel} from '../../../data/models/schedule.model';
 
 export type ScheduleDetailsParams = {
-  title: Date;
   schedule: ScheduleModel;
 };
 
@@ -33,7 +32,7 @@ const ScheduleDetails: React.FC<ScheduleDetailsProps> = ({
 }) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      title: dateFormat(route.params?.title) ?? '',
+      title: dateFormat(route.params?.schedule.timeStart) ?? '',
     });
   }, [navigation, route]);
 

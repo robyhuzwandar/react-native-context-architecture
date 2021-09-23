@@ -1,9 +1,9 @@
 import React from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {DefaultNavigationProps} from '../../../route/type';
-import AllScheduleItem from './elements/AllScheduleItem';
+import AllScheduleItem from './components/AllScheduleItem';
 import {theme} from '../../../shared/styles/theme';
-import ButtonIcon from '../../components/button/ButtonIcon';
+import ButtonIcon from '../../elements/button/ButtonIcon';
 import useAllSchedule, {
   UseAllScheduleParams,
 } from '../../../hooks/useAllSchedule';

@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {containerPrimaryStyle} from '../../../../shared/styles/styles';
-import Column from '../../../components/Column';
-import Row from '../../../components/Row';
+import Column from '../../../elements/Column';
+import Row from '../../../elements/Row';
 import Time from './Time';
 import {theme} from '../../../../shared/styles/theme';
-import DashContainer from '../../../components/DashContainer';
+import DashContainer from '../../../elements/DashContainer';
 import {DefaultNavigationProps} from '../../../../route/type';
 import {ScheduleOfMonthModel} from '../../../../data/models/scheduleOfMonth.model';
 
@@ -35,7 +35,6 @@ const AllScheduleItem: React.FC<AllScheduleItemProps> = ({
       onPress={() => {
         if (!isScheduleEmpty) {
           navigation.navigate('ScheduleDetails', {
-            title: scheduleOfMonth.schedule!.timeStart,
             schedule: scheduleOfMonth.schedule!,
           });
         }

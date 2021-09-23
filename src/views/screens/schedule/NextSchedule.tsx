@@ -1,11 +1,11 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
-import Container from '../../components/Container';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Container from '../../elements/Container';
 import {theme} from '../../../shared/styles/theme';
-import Row from '../../components/Row';
-import Time from './elements/Time';
+import Row from '../../elements/Row';
+import Time from './components/Time';
 import {DefaultNavigationProps} from '../../../route/type';
-import ButtonText from '../../components/button/ButtonText';
+import ButtonText from '../../elements/button/ButtonText';
 import useNextSchedule, {
   UseNextScheduleParams,
 } from '../../../hooks/useNextSchedule';
@@ -19,9 +19,9 @@ type NextScheduleContentProps = {
   schedules: ScheduleModel[];
   navigation: DefaultNavigationProps<'default'>;
 };
-type CardScheduleProps = {
+interface CardScheduleProps extends NextScheduleProps {
   schedule: ScheduleModel;
-};
+}
 
 const NextSchedule: React.FC<NextScheduleProps> = ({navigation}) => {
   const {isLoading, isError, data}: UseNextScheduleParams = useNextSchedule();
@@ -55,7 +55,7 @@ const NextScheduleContent: React.FC<NextScheduleContentProps> = ({
         data={schedules.slice(0, 5)}
         renderItem={({item, index}: any) => (
           <View style={index === 0 ? {...S.firstCard} : {}}>
-            <CardSchedule schedule={item} />
+            <CardSchedule schedule={item} navigation={navigation} />
           </View>
         )}
         horizontal={true}
@@ -64,20 +64,27 @@ const NextScheduleContent: React.FC<NextScheduleContentProps> = ({
   );
 };
 
-const CardSchedule: React.FC<CardScheduleProps> = ({schedule}) => {
+const CardSchedule: React.FC<CardScheduleProps> = ({schedule, navigation}) => {
   return (
-    <View style={S.card}>
-      <Text style={[theme.textVariants.body.b3, S.day]}>
-        {getDay(schedule.timeStart)}
-      </Text>
-      <Text style={[theme.textVariants.header.h2, S.dateMonth]}>
-        {getDateAndMont(schedule.timeStart)}
-      </Text>
-      <Text style={[theme.textVariants.bodyBold.bb2, S.location]}>
-        {schedule.location}
-      </Text>
-      <Time start={schedule.timeStart} end={schedule.timeEnd} />
-    </View>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('ScheduleDetails', {
+          schedule: schedule!,
+        });
+      }}>
+      <View style={S.card}>
+        <Text style={[theme.textVariants.body.b3, S.day]}>
+          {getDay(schedule.timeStart)}
+        </Text>
+        <Text style={[theme.textVariants.header.h2, S.dateMonth]}>
+          {getDateAndMont(schedule.timeStart)}
+        </Text>
+        <Text style={[theme.textVariants.bodyBold.bb2, S.location]}>
+          {schedule.location}
+        </Text>
+        <Time start={schedule.timeStart} end={schedule.timeEnd} />
+      </View>
+    </TouchableOpacity>
   );
 };
 

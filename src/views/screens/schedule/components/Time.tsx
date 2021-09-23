@@ -3,7 +3,7 @@ import {StyleSheet, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {theme} from '../../../../shared/styles/theme';
 import {timeFormat} from '../../../../shared/utils/date';
-import Row from '../../../components/Row';
+import Row from '../../../elements/Row';
 
 type TimeProps = {
   start: Date;
