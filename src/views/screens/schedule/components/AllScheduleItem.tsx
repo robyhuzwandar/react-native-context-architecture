@@ -9,21 +9,17 @@ import DashContainer from '../../../elements/DashContainer';
 import {DefaultNavigationProps} from '../../../../route/type';
 import {ScheduleOfMonthModel} from '../../../../data/models/scheduleOfMonth.model';
 
-type AllScheduleItemProps = {
+interface AllScheduleItemProps extends CardContentProps {
   isScheduleEmpty: Boolean;
-  isToday: Boolean;
   navigation: DefaultNavigationProps<'default'>;
-  scheduleOfMonth: ScheduleOfMonthModel;
-};
+}
+interface CardContentProps extends MonthDate {
+  isToday: Boolean;
+}
 
 type MonthDate = {
   scheduleOfMonth: ScheduleOfMonthModel;
 };
-type CardContentProps = {
-  isToday: Boolean;
-  scheduleOfMonth: ScheduleOfMonthModel;
-};
-
 const AllScheduleItem: React.FC<AllScheduleItemProps> = ({
   isScheduleEmpty,
   isToday,

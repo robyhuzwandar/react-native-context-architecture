@@ -13,9 +13,7 @@ import Time from './components/Time';
 import {dateFormat} from '../../../shared/utils/date';
 import {ScheduleModel} from '../../../data/models/schedule.model';
 
-export type ScheduleDetailsParams = {
-  schedule: ScheduleModel;
-};
+export interface ScheduleDetailsParams extends ContentProps {}
 
 type ContentProps = {
   schedule: ScheduleModel;
