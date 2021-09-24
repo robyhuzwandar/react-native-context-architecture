@@ -5,9 +5,7 @@ import AllScheduleItem from './components/AllScheduleItem';
 import {theme} from '../../../shared/styles/theme';
 import ButtonIcon from '../../elements/button/ButtonIcon';
 import {getMonthAndYear} from '../../../shared/utils/date';
-import useAllSchedule, {
-  UseAllScheduleParams,
-} from '../../../hooks/useAllSchedule';
+import useAllSchedule, {UseAllSchedule} from '../../../hooks/useAllSchedule';
 
 type AllScheduleProps = {
   navigation: DefaultNavigationProps<'default'>;
@@ -23,7 +21,7 @@ const AllSchedule: React.FC<AllScheduleProps> = ({navigation}) => {
     });
   }, [navigation]);
 
-  const {isLoading, isError, scheduleThisMonth}: UseAllScheduleParams =
+  const {isLoading, isError, scheduleThisMonth}: UseAllSchedule =
     useAllSchedule();
 
   if (isLoading) {

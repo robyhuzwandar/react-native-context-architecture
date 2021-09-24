@@ -3,14 +3,14 @@ import {ScheduleModel} from '../data/models/schedule.model';
 import {getScheduleTodayRepository} from '../data/repositories/schedule.repository';
 import {Context, ContextReducers} from '../state/store';
 
-export type UseScheduleTodayParams = {
+export type UseScheduleToday = {
   isLoading: Boolean;
   isError: Boolean;
   isEmpty: Boolean;
   data: ScheduleModel;
 };
 
-const useScheduleToday: any = (): UseScheduleTodayParams => {
+const useScheduleToday: any = (): UseScheduleToday => {
   const [state, dispatch] = useContext<ContextReducers>(Context).schedule;
 
   useEffect(() => {

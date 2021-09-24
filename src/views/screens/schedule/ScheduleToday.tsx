@@ -7,7 +7,9 @@ import Column from '../../elements/Column';
 import DashedLine from '../../elements/DashLine';
 import Time from './components/Time';
 import {containerPrimaryStyle} from '../../../shared/styles/styles';
-import useScheduleToday from '../../../hooks/useScheduleToday';
+import useScheduleToday, {
+  UseScheduleToday,
+} from '../../../hooks/useScheduleToday';
 import {ScheduleModel} from '../../../data/models/schedule.model';
 import {DefaultNavigationProps} from '../../../route/type';
 
@@ -20,7 +22,7 @@ type ScheduleTodayBodyProps = {
 };
 
 const ScheduleToday: React.FC<ScheduleTodayProps> = ({navigation}) => {
-  const {isLoading, isError, data} = useScheduleToday();
+  const {isLoading, isError, data}: UseScheduleToday = useScheduleToday();
 
   if (isLoading) {
     return <Text>Loading....</Text>;

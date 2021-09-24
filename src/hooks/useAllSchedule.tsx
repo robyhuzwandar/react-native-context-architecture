@@ -3,14 +3,14 @@ import {getMonthAndDate, getMonth} from '../shared/utils/date';
 import {ScheduleOfMonthModel} from '../data/models/scheduleOfMonth.model';
 import useNextSchedule from './useNextSchedule';
 
-export type UseAllScheduleParams = {
+export type UseAllSchedule = {
   isLoading: Boolean;
   isError: Boolean;
   isEmpty: Boolean;
   scheduleThisMonth: ScheduleOfMonthModel[];
 };
 
-const useAllSchedule: any = (): UseAllScheduleParams => {
+const useAllSchedule: any = (): UseAllSchedule => {
   const {isLoading, isError, data, isEmpty} = useNextSchedule();
 
   let date = new Date();

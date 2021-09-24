@@ -5,9 +5,7 @@ import {theme} from '../../../shared/styles/theme';
 import Row from '../../elements/Row';
 import {DefaultNavigationProps} from '../../../route/type';
 import ButtonText from '../../elements/button/ButtonText';
-import useNextSchedule, {
-  UseNextScheduleParams,
-} from '../../../hooks/useNextSchedule';
+import useNextSchedule, {UseNextSchedule} from '../../../hooks/useNextSchedule';
 import {ScheduleModel} from '../../../data/models/schedule.model';
 import NextScheduleItem from './components/NextScheduleItem';
 
@@ -19,7 +17,7 @@ interface NextScheduleContentProps extends NextScheduleProps {
 }
 
 const NextSchedule: React.FC<NextScheduleProps> = ({navigation}) => {
-  const {isLoading, isError, data}: UseNextScheduleParams = useNextSchedule();
+  const {isLoading, isError, data}: UseNextSchedule = useNextSchedule();
 
   if (isLoading) {
     return <Text>Loading....</Text>;
