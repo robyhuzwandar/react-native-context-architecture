@@ -2,7 +2,7 @@ import {useContext, useEffect} from 'react';
 import {getNextScheduleRepository} from '../data/repositories/schedule.repository';
 import {Context, ContextReducers} from '../state/store';
 import {ScheduleModel} from '../data/models/schedule.model';
-import {getMontAndDate, getMont} from '../shared/utils/date';
+import {getMonthAndDate, getMonth} from '../shared/utils/date';
 import {ScheduleOfMonthModel} from '../data/models/scheduleOfMonth.model';
 
 export type UseAllScheduleParams = {
@@ -40,13 +40,13 @@ const useAllSchedule: any = (): UseAllScheduleParams => {
   ).getDate();
 
   let scheduleThisMonth: ScheduleOfMonthModel[] = [];
-  let month: string = getMont(date);
+  let month: string = getMonth(date);
 
   if (schedules) {
     for (let i = date.getDate(); i <= numberOfDays; i++) {
       let schedule = schedules.find(item => {
         return (
-          getMontAndDate(item.timeStart).toLowerCase() ===
+          getMonthAndDate(item.timeStart).toLowerCase() ===
           `${month} ${i}`.toLowerCase()
         );
       });

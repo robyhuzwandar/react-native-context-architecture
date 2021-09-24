@@ -54,8 +54,17 @@ export function getDay(value: Date): string {
  * @Format D MMM
  * e.g : 22 Apr
  */
-export function getDateAndMont(value: Date): string {
+export function getDateAndMonth(value: Date): string {
   return moment(value).format('D MMM');
+}
+
+/**
+ * Get month and year
+ * @Format MMMM YYYY
+ * e.g : April 2020
+ */
+export function getMonthAndYear(value: Date): string {
+  return moment(value).format('MMMM YYYY');
 }
 
 /**
@@ -63,7 +72,7 @@ export function getDateAndMont(value: Date): string {
  * @Format MMM D
  * e.g : Apr 23
  */
-export function getMontAndDate(value: Date): string {
+export function getMonthAndDate(value: Date): string {
   return moment(value).format('MMM D');
 }
 
@@ -72,10 +81,14 @@ export function getMontAndDate(value: Date): string {
  * @Format MMM
  * e.g : Apr
  */
-export function getMont(value: Date): string {
+export function getMonth(value: Date): string {
   return moment(value).format('MMM');
 }
 
+/**
+ * To compare two dates
+ * it will return Boolean
+ */
 export function isDateEqual(value: Date, valueEqual: Date): boolean {
   return moment(value).isSame(valueEqual, 'month');
 }

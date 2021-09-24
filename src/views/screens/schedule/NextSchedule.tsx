@@ -10,7 +10,7 @@ import useNextSchedule, {
   UseNextScheduleParams,
 } from '../../../hooks/useNextSchedule';
 import {ScheduleModel} from '../../../data/models/schedule.model';
-import {getDateAndMont, getDay} from '../../../shared/utils/date';
+import {getDateAndMonth, getDay} from '../../../shared/utils/date';
 
 type NextScheduleProps = {
   navigation: DefaultNavigationProps<'default'>;
@@ -77,7 +77,7 @@ const CardSchedule: React.FC<CardScheduleProps> = ({schedule, navigation}) => {
           {getDay(schedule.timeStart)}
         </Text>
         <Text style={[theme.textVariants.header.h2, S.dateMonth]}>
-          {getDateAndMont(schedule.timeStart)}
+          {getDateAndMonth(schedule.timeStart)}
         </Text>
         <Text style={[theme.textVariants.bodyBold.bb2, S.location]}>
           {schedule.location}

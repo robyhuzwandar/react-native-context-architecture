@@ -4,6 +4,7 @@ import {DefaultNavigationProps} from '../../../route/type';
 import AllScheduleItem from './components/AllScheduleItem';
 import {theme} from '../../../shared/styles/theme';
 import ButtonIcon from '../../elements/button/ButtonIcon';
+import {getMonthAndYear} from '../../../shared/utils/date';
 import useAllSchedule, {
   UseAllScheduleParams,
 } from '../../../hooks/useAllSchedule';
@@ -32,7 +33,9 @@ const AllSchedule: React.FC<AllScheduleProps> = ({navigation}) => {
   } else if (scheduleThisMonth) {
     return (
       <View style={S.container}>
-        <Text style={[theme.textVariants.header.h4, S.month]}>SEP 2021</Text>
+        <Text style={[theme.textVariants.header.h4, S.month]}>
+          {getMonthAndYear(new Date()).toLocaleUpperCase()}
+        </Text>
         <FlatList
           data={scheduleThisMonth}
           renderItem={({item}: any) => {
