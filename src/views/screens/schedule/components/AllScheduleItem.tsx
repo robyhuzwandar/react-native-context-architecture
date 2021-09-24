@@ -28,6 +28,7 @@ const AllScheduleItem: React.FC<AllScheduleItemProps> = ({
 }) => {
   return (
     <TouchableOpacity
+      activeOpacity={1}
       onPress={() => {
         if (!isScheduleEmpty) {
           navigation.navigate('ScheduleDetails', {

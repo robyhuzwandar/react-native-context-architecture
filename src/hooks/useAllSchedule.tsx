@@ -1,9 +1,7 @@
-import {useContext, useEffect} from 'react';
-import {getNextScheduleRepository} from '../data/repositories/schedule.repository';
-import {Context, ContextReducers} from '../state/store';
 import {ScheduleModel} from '../data/models/schedule.model';
 import {getMonthAndDate, getMonth} from '../shared/utils/date';
 import {ScheduleOfMonthModel} from '../data/models/scheduleOfMonth.model';
+import useNextSchedule from './useNextSchedule';
 
 export type UseAllScheduleParams = {
   isLoading: Boolean;
@@ -13,25 +11,10 @@ export type UseAllScheduleParams = {
 };
 
 const useAllSchedule: any = (): UseAllScheduleParams => {
-  const [state, dispatch] = useContext<ContextReducers>(Context).nextSchedule;
-
-  useEffect(() => {
-    getNextScheduleRepository(dispatch);
-  }, [dispatch]);
-
-  let isLoading: Boolean = state.isLoading;
-  let isError: Boolean = state.isError;
-  let isEmpty: Boolean =
-    !state.isLoading && !state.isError && state.data.length === 0;
-  let schedules: ScheduleModel[] =
-    !state.isLoading &&
-    !state.isError &&
-    state.data !== null &&
-    state.data !== ''
-      ? state.data
-      : '';
+  const {isLoading, isError, data, isEmpty} = useNextSchedule();
 
   let date = new Date();
+  let schedules: ScheduleModel[] = data;
 
   let numberOfDays: number = new Date(
     date.getFullYear(),
